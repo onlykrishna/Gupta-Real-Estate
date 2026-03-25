@@ -20,7 +20,7 @@ const AdminDashboard: React.FC = () => {
       {/* Top Level Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <StatCard title="Total Listings" value={142} className="border-t-4 border-t-blue-500" />
-        <StatCard title="Total Leads" value={8,391} className="border-t-4 border-t-green-500" />
+        <StatCard title="Total Leads" value="8,391" className="border-t-4 border-t-green-500" />
         <StatCard title="New Leads (This Week)" value={156} className="border-t-4 border-t-purple-500" />
       </div>
 

@@ -29,13 +29,13 @@ const AdminLogin: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen relative flex items-center justify-center bg-navy overflow-hidden font-sans">
+    <div className="min-h-screen relative flex items-center justify-center bg-navy px-4 overflow-hidden font-sans">
       {/* Background Orbs for Senior Aesthetic */}
-      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-gold/5 blur-[120px] rounded-full"></div>
-      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-gold/5 blur-[120px] rounded-full"></div>
+      <div className="absolute top-[-10%] left-[-10%] w-[80%] md:w-[40%] h-[40%] bg-gold/5 blur-[120px] rounded-full"></div>
+      <div className="absolute bottom-[-10%] right-[-10%] w-[80%] md:w-[40%] h-[40%] bg-gold/5 blur-[120px] rounded-full"></div>
 
-      <div className="max-w-md w-full perspective-1000">
-        <div className="bg-white/5 backdrop-blur-2xl p-12 rounded-[2.5rem] border border-white/10 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] transform transition-all duration-700 animate-fade-in-up">
+      <div className="w-full max-w-md perspective-1000">
+        <div className="bg-white/5 backdrop-blur-2xl p-8 md:p-12 rounded-[2rem] md:rounded-[2.5rem] border border-white/10 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] transform transition-all duration-700 animate-fade-in-up">
           
           <div className="text-center mb-12">
             <Link to="/" className="inline-block mb-8">

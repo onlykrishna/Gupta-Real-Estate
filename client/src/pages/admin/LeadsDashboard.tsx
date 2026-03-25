@@ -43,7 +43,7 @@ const LeadsDashboard: React.FC = () => {
         document.body.appendChild(link);
         link.click();
         link.parentNode?.removeChild(link);
-      }).catch(err => alert('Failed to download CSV export. Please check server logs.'));
+      }).catch(() => alert('Failed to download CSV export. Please check server logs.'));
   };
 
   return (

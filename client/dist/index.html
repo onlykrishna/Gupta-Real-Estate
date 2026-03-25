@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gupta Real Estate</title>
+    <!-- SEO and UX Enhancements -->
+    <meta name="description" content="Premium real estate property listing and lead generation platform." />
+    <!-- Performance Optimization -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+      /* Senior Performance & Scroll Polish */
+      html { scroll-behavior: smooth; }
+      body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; background-color: #FAF8F5; }
+      
+      /* Navigation Progress Indicator */
+      #nav-progress {
+        position: fixed; top: 0; left: 0; height: 3px; background: #C9A84C;
+        z-index: 9999; transition: width 0.4s ease; width: 0%;
+      }
+
+      /* Base Layout Skeleton (Pre-paint) */
+      .skeleton-bg { background: linear-gradient(90deg, #f1f5f9 25%, #f8fafc 50%, #f1f5f9 75%); background-size: 200% 100%; animation: skeleton-load 1.5s infinite; }
+      @keyframes skeleton-load { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+      /* Eliminate scroll lag by hinting GPU acceleration on key containers */
+      .scroll-gpu { 
+        will-change: transform; 
+        backface-visibility: hidden; 
+        transform: translate3d(0,0,0); 
+      }
+
+      /* Custom Premium Scrollbar */
+      ::-webkit-scrollbar { width: 10px; }
+      ::-webkit-scrollbar-track { background: #FAF8F5; }
+      ::-webkit-scrollbar-thumb { background: #0A1628; border-radius: 10px; border: 3px solid #FAF8F5; }
+      ::-webkit-scrollbar-thumb:hover { background: #C9A84C; }
+    </style>
+
+    <!-- Tailwind Config with Senior Performance Pre-flight -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              navy: '#0A1628',
+              gold: '#C9A84C',
+              'warm-white': '#FAF8F5'
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              serif: ['"Playfair Display"', 'serif'],
+            },
+            animation: {
+              'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            },
+            keyframes: {
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(40px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <script type="module" crossorigin src="/assets/index-7ef42a7a.js"></script>
+  </head>
+  <body class="antialiased text-navy bg-warm-white font-sans">
+    <div id="root"></div>
+    
+  </body>
+</html>

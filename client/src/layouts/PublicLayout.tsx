@@ -5,38 +5,88 @@ const PublicLayout: React.FC = () => {
   const location = useLocation();
   const isHome = location.pathname === '/';
 
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
   React.useEffect(() => {
     window.scrollTo(0, 0);
+    setIsMenuOpen(false); // Close menu on route change
   }, [location.pathname]);
+
+  const navItems = [
+    { name: 'Home', path: '/' },
+    { name: 'Properties', path: '/properties' },
+    { name: 'About Us', path: '/about' },
+    { name: 'Services', path: '/services' },
+    { name: 'Contact', path: '/contact' },
+  ];
 
   return (
     <div className="min-h-screen flex flex-col font-sans bg-warm-white selection:bg-gold/30 selection:text-navy scroll-gpu">
+      {/* Mobile Menu Overlay - Moved to Top Level for absolute isolation */}
+      <div className={`fixed inset-0 bg-navy/98 backdrop-blur-lg transition-all duration-500 z-[100] lg:hidden flex flex-col ${
+        isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none translate-x-full'
+      }`}>
+        {/* Mobile Menu Header */}
+        <div className="h-20 flex items-center justify-between px-6 border-b border-white/5">
+          <div className="font-serif font-black text-xl tracking-tighter text-white">
+            GUPTA<span className="text-gold">ESTATES</span>
+          </div>
+          <button onClick={() => setIsMenuOpen(false)} className="w-10 h-10 flex items-center justify-center text-white">
+             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        
+        <div className="flex-1 flex flex-col justify-center px-10">
+          <nav className="flex flex-col gap-6">
+            {navItems.map((link, idx) => (
+              <Link 
+                key={link.name} 
+                to={link.path}
+                onClick={() => setIsMenuOpen(false)}
+                className={`text-3xl font-black tracking-widest uppercase transition-all duration-300 flex items-center justify-between group ${
+                  location.pathname === link.path ? 'text-gold' : 'text-white/60 hover:text-white'
+                }`}
+                style={{ transitionDelay: `${idx * 50}ms`, transform: isMenuOpen ? 'translateX(0)' : 'translateX(40px)' }}
+              >
+                {link.name}
+                <svg className="w-6 h-6 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+              </Link>
+            ))}
+          </nav>
+        </div>
+
+        <div className="p-10 border-t border-white/5">
+           <Link 
+             to="/admin/login" 
+             onClick={() => setIsMenuOpen(false)}
+             className="block text-center py-5 bg-gold text-navy font-black tracking-widest uppercase rounded-2xl shadow-xl shadow-gold/20"
+           >
+             Client Portal Login
+           </Link>
+        </div>
+      </div>
+
       {/* Premium Navigation Header */}
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 h-20 flex items-center ${
-        isHome 
+        isHome && !isMenuOpen
           ? 'bg-transparent border-transparent' 
-          : 'bg-white/95 border-b border-slate-200'
+          : 'bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm'
       }`}>
-        <div className="max-w-7xl mx-auto w-full px-6 flex items-center justify-between">
-          <Link to="/" className="group flex items-center gap-3">
-            <div className={`w-10 h-10 flex items-center justify-center font-serif font-black text-xl rounded-xl transition-all duration-300 ${
-              isHome ? 'bg-gold text-navy rotate-3 group-hover:rotate-12' : 'bg-navy text-white rotate-0 group-hover:rotate-6'
+        <div className="max-w-7xl mx-auto w-full px-4 sm:px-8 flex items-center justify-between">
+          <Link to="/" className="group flex items-center gap-2 sm:gap-3 flex-shrink-0">
+            <div className={`w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center font-serif font-black text-lg sm:text-xl rounded-xl transition-all duration-300 ${
+              isHome && !isMenuOpen ? 'bg-gold text-navy rotate-3 group-hover:rotate-12' : 'bg-navy text-white rotate-0 group-hover:rotate-6'
             }`}>G</div>
-            <div className={`font-serif font-black text-2xl tracking-tighter transition-colors ${
-              isHome ? 'text-white' : 'text-navy'
+            <div className={`font-serif font-black text-lg sm:text-2xl tracking-tighter transition-colors ${
+              isHome && !isMenuOpen ? 'text-white' : 'text-navy'
             }`}>
               GUPTA<span className="text-gold">ESTATES</span>
             </div>
           </Link>
 
+          {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-10">
-            {[
-              { name: 'Home', path: '/' },
-              { name: 'Properties', path: '/properties' },
-              { name: 'About Us', path: '/about' },
-              { name: 'Services', path: '/services' },
-              { name: 'Contact', path: '/contact' },
-            ].map((link) => (
+            {navItems.map((link) => (
               <Link 
                 key={link.name} 
                 to={link.path}
@@ -55,14 +105,26 @@ const PublicLayout: React.FC = () => {
           <div className="flex items-center gap-4">
             <Link 
               to="/admin/login" 
-              className={`text-xs font-black tracking-widest uppercase px-6 py-3 rounded-full transition-all ${
-                isHome 
+              className={`hidden sm:block text-[10px] font-black tracking-widest uppercase px-6 py-3 rounded-full transition-all ${
+                isHome && !isMenuOpen
                   ? 'bg-white/10 backdrop-blur-md text-white border border-white/20 hover:bg-white/20' 
                   : 'bg-navy text-white hover:bg-navy/90 border border-transparent shadow-lg shadow-navy/20'
               }`}
             >
               Portal Login
             </Link>
+
+            {/* Mobile Menu Toggle */}
+            <button 
+              onClick={() => setIsMenuOpen(true)}
+              className={`lg:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 transition-colors ${
+                isHome ? 'text-white' : 'text-navy'
+              }`}
+            >
+              <span className="w-6 h-0.5 bg-current transition-all"></span>
+              <span className="w-4 h-0.5 bg-current transition-all mr-auto ml-2"></span>
+              <span className="w-6 h-0.5 bg-current transition-all"></span>
+            </button>
           </div>
         </div>
       </header>
