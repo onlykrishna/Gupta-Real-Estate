@@ -21,63 +21,67 @@ const PublicLayout: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col font-sans bg-warm-white selection:bg-gold/30 selection:text-navy scroll-gpu">
-      {/* Mobile Menu Overlay - Moved to Top Level for absolute isolation */}
-      <div className={`fixed inset-0 bg-navy/98 backdrop-blur-lg transition-all duration-500 z-[100] lg:hidden flex flex-col ${
-        isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none translate-x-full'
+    <div className="min-h-screen flex flex-col font-sans bg-warm-white selection:bg-gold/30 selection:text-navy">
+      {/* Mobile Menu Overlay - Solid Layering for Maximum Visibility */}
+      <div className={`fixed inset-0 bg-navy z-[100] lg:hidden flex flex-col transition-all duration-300 ${
+        isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
       }`}>
         {/* Mobile Menu Header */}
-        <div className="h-20 flex items-center justify-between px-6 border-b border-white/5">
+        <div className="h-20 flex items-center justify-between px-6 border-b border-white/10 flex-shrink-0">
           <div className="font-serif font-black text-xl tracking-tighter text-white">
             GUPTA<span className="text-gold">ESTATES</span>
           </div>
-          <button onClick={() => setIsMenuOpen(false)} className="w-10 h-10 flex items-center justify-center text-white">
-             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          <button 
+            onClick={() => setIsMenuOpen(false)} 
+            className="w-10 h-10 flex items-center justify-center text-white active:scale-90 transition-transform"
+            aria-label="Close Menu"
+          >
+             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
           </button>
         </div>
         
-        <div className="flex-1 flex flex-col justify-center px-10">
+        <div className="flex-1 overflow-y-auto pt-10 px-8">
           <nav className="flex flex-col gap-6">
             {navItems.map((link, idx) => (
               <Link 
                 key={link.name} 
                 to={link.path}
                 onClick={() => setIsMenuOpen(false)}
-                className={`text-3xl font-black tracking-widest uppercase transition-all duration-300 flex items-center justify-between group ${
-                  location.pathname === link.path ? 'text-gold' : 'text-white/60 hover:text-white'
+                className={`text-2xl font-black tracking-widest uppercase py-2 flex items-center justify-between border-b border-white/5 ${
+                  location.pathname === link.path ? 'text-gold' : 'text-white'
                 }`}
-                style={{ transitionDelay: `${idx * 50}ms`, transform: isMenuOpen ? 'translateX(0)' : 'translateX(40px)' }}
+                style={{ transitionDelay: `${idx * 40}ms` }}
               >
                 {link.name}
-                <svg className="w-6 h-6 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+                <svg className="w-5 h-5 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/></svg>
               </Link>
             ))}
           </nav>
         </div>
 
-        <div className="p-10 border-t border-white/5">
+        <div className="p-8 border-t border-white/10 bg-navy">
            <Link 
              to="/admin/login" 
              onClick={() => setIsMenuOpen(false)}
-             className="block text-center py-5 bg-gold text-navy font-black tracking-widest uppercase rounded-2xl shadow-xl shadow-gold/20"
+             className="block text-center py-5 bg-gold text-navy font-black tracking-widest uppercase rounded-2xl shadow-lg shadow-navy/20"
            >
-             Client Portal Login
+             Portal Login
            </Link>
         </div>
       </div>
 
       {/* Premium Navigation Header */}
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 h-20 flex items-center ${
+      <header className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-300 h-20 flex items-center ${
         isHome && !isMenuOpen
-          ? 'bg-transparent border-transparent' 
-          : 'bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm'
+          ? 'bg-transparent' 
+          : 'bg-white border-b border-slate-200'
       }`}>
-        <div className="max-w-7xl mx-auto w-full px-4 sm:px-8 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto w-full px-6 flex items-center justify-between">
           <Link to="/" className="group flex items-center gap-2 sm:gap-3 flex-shrink-0">
             <div className={`w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center font-serif font-black text-lg sm:text-xl rounded-xl transition-all duration-300 ${
-              isHome && !isMenuOpen ? 'bg-gold text-navy rotate-3 group-hover:rotate-12' : 'bg-navy text-white rotate-0 group-hover:rotate-6'
+              isHome && !isMenuOpen ? 'bg-gold text-navy rotate-3' : 'bg-navy text-white rotate-0'
             }`}>G</div>
-            <div className={`font-serif font-black text-lg sm:text-2xl tracking-tighter transition-colors ${
+            <div className={`font-serif font-black text-lg sm:text-2xl tracking-tighter ${
               isHome && !isMenuOpen ? 'text-white' : 'text-navy'
             }`}>
               GUPTA<span className="text-gold">ESTATES</span>
