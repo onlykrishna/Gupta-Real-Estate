@@ -11,48 +11,47 @@ const HomePage: React.FC = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <img 
             src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" 
             alt="Luxury Home" 
-            className="w-full h-full object-cover scale-110 animate-[pulse_20s_infinite]"
+            className="w-full h-full object-cover sm:scale-110 animate-pulse-slow"
           />
-          <div className="absolute inset-0 bg-navy/70"></div>
+          <div className="absolute inset-0 bg-navy/75"></div>
         </div>
 
-        {/* Content */}
-        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center pt-20">
-          <span className="inline-block px-4 py-1.5 bg-gold/20 border border-gold/30 text-gold rounded-full text-[10px] md:text-xs font-black uppercase tracking-[0.2em] mb-6 animate-fade-in">
+        {/* Content - Optimized pt for Mobile Viewports */}
+        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center pt-24 pb-12">
+          <span className="inline-block px-4 py-1.5 bg-gold/20 border border-gold/30 text-gold rounded-full text-[10px] md:text-xs font-black uppercase tracking-[0.3em] mb-6 animate-fade-in shadow-xl shadow-gold/5">
             ESTABLISHED 1998
           </span>
-          <h1 className="text-4xl sm:text-6xl md:text-8xl font-serif font-black text-white tracking-tighter leading-none mb-8 drop-shadow-2xl">
+          <h1 className="text-4xl sm:text-6xl md:text-8xl font-serif font-black text-white tracking-tighter leading-[0.9] mb-8 drop-shadow-2xl animate-fade-in-up">
             Finding Your <br className="hidden sm:block" />
             <span className="text-gold italic">Dream Sanctuary</span>
           </h1>
-          <p className="text-lg md:text-2xl text-slate-200 max-w-2xl mx-auto mb-10 font-medium leading-relaxed opacity-90">
+          <p className="text-base sm:text-lg md:text-2xl text-slate-100 max-w-2xl mx-auto mb-10 font-medium leading-relaxed opacity-90 animate-fade-in-up md:delay-100">
             Specializing in premium residential estates and high-yield commercial investments across India's most prestigious corridors.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up md:delay-200">
             <Link 
               to="/properties" 
-              className="group relative px-10 py-5 bg-gold text-navy font-black rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_10px_30px_rgba(201,168,76,0.4)]"
+              className="w-full sm:w-auto px-10 py-5 bg-gold text-navy font-black rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_10px_30px_rgba(201,168,76,0.3)] text-xs tracking-widest"
             >
-              <span className="relative z-10">EXPLORE PROPERTIES</span>
-              <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+              EXPLORE PROPERTIES
             </Link>
             <Link 
               to="/admin/login" 
-              className="px-10 py-5 bg-white/10 backdrop-blur-md border border-white/20 text-white font-black rounded-full hover:bg-white/20 transition-all"
+              className="w-full sm:w-auto px-10 py-5 bg-white/10 backdrop-blur-md border border-white/20 text-white font-black rounded-full hover:bg-white/20 transition-all text-xs tracking-widest"
             >
               ADMIN ACCESS
             </Link>
           </div>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
+        {/* Improved Scroll Indicator for Mobile */}
+        <div className="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-30 hidden sm:block">
           <div className="w-1 h-12 bg-gradient-to-b from-transparent to-white rounded-full"></div>
         </div>
       </section>
