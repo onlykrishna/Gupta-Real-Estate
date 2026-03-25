@@ -23,15 +23,15 @@ const HomePage: React.FC = () => {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-          <span className="inline-block px-4 py-1.5 bg-gold/20 border border-gold/30 text-gold rounded-full text-xs font-black uppercase tracking-[0.2em] mb-6 animate-fade-in">
+        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center pt-20">
+          <span className="inline-block px-4 py-1.5 bg-gold/20 border border-gold/30 text-gold rounded-full text-[10px] md:text-xs font-black uppercase tracking-[0.2em] mb-6 animate-fade-in">
             ESTABLISHED 1998
           </span>
-          <h1 className="text-5xl md:text-8xl font-serif font-black text-white tracking-tighter leading-none mb-8 drop-shadow-2xl">
-            Finding Your <br/>
+          <h1 className="text-4xl sm:text-6xl md:text-8xl font-serif font-black text-white tracking-tighter leading-none mb-8 drop-shadow-2xl">
+            Finding Your <br className="hidden sm:block" />
             <span className="text-gold italic">Dream Sanctuary</span>
           </h1>
-          <p className="text-xl md:text-2xl text-slate-200 max-w-2xl mx-auto mb-10 font-medium leading-relaxed opacity-90">
+          <p className="text-lg md:text-2xl text-slate-200 max-w-2xl mx-auto mb-10 font-medium leading-relaxed opacity-90">
             Specializing in premium residential estates and high-yield commercial investments across India's most prestigious corridors.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
