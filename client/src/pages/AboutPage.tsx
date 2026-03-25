@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 
 const AboutPage: React.FC = () => {
   return (
-    <div className="pt-32 pb-24 bg-warm-white">
+    <div className="pt-24 md:pt-32 pb-24 bg-warm-white">
       <Helmet>
         <title>Our Heritage | Gupta Real Estate</title>
         <meta name="description" content="Since 1998, Gupta Real Estate has been the gold standard for luxury property in India." />

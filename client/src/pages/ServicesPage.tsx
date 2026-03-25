@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 
 const ServicesPage: React.FC = () => {
   return (
-    <div className="pt-32 pb-24 bg-warm-white">
+    <div className="pt-24 md:pt-32 pb-24 bg-warm-white">
       <Helmet>
         <title>Our Services | Gupta Real Estate</title>
         <meta name="description" content="Explore our range of premium real estate services including management, consulting, and research." />
